@@ -29,7 +29,6 @@ export default function Home() {
     />
   </div>
 
-
   const addBtn = <div>
     <button className={styles.addBtn}
       onClick={() => {getInputBox()}}
