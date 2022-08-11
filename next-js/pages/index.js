@@ -3,6 +3,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import InputBox from "../componets/inputBox/InputBox";
 import InputButton from "../componets/inputButton/InputButton";
+import ShowList from "../componets/showList/ShowList";
 
 export default function Home() {
   const date = new Date();
@@ -29,16 +30,6 @@ export default function Home() {
     setListText((old) => [...old, inputText]);
   };
 
-  let showTextBox = (
-    <div>
-      <ul>
-        {listText.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </div>
-  );
-
   return (
     <div className={styles.container}>
       <Head>
@@ -62,7 +53,7 @@ export default function Home() {
           <InputButton label="Add" getInput={getInputBox} />
         </div>
 
-        {showTextBox}
+        <ShowList className={styles.listContainer} listObject={listText} />
 
         {/*
         <p className={styles.description}>
