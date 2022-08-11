@@ -1,11 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import InputBox from "../componets/inputBox/InputBox";
+import InputButton from "../componets/inputButton/InputButton";
 
 export default function Home() {
   const date = new Date();
-  const dayOfWeekName = date.toLocaleString("default", { 
-    weekday: "long" 
+  const dayOfWeekName = date.toLocaleString("default", {
+    weekday: "long",
   });
   const currentDate = date.toLocaleString("default", {
     month: "long",
@@ -13,46 +15,29 @@ export default function Home() {
     year: "numeric",
   });
 
-  const [inputText, setInputText] = useState();
+  const [inputText, setInputText] = useState("");
 
-  let onInputChange = (e) => {
-    // console.log(e.target.value);
-    // e.preventDefault(); 
-    setInputText(e.target.value);
-  }
-  const inputBox = <div> 
-    <input
-      type="text"
-      name="inputBox"
-      value={inputText}
-      onChange={(e) => {onInputChange(e)}}
-    />
-  </div>
+  let onInputChange = (event) => {
+    event.preventDefault();
+    setInputText(event.target.value);
+  };
 
-  const addBtn = <div>
-    <button className={styles.addBtn}
-      onClick={() => {getInputBox()}}
-      >
-      Add
-    </button>
-  </div>
+  const [listText, setListText] = useState([]);
 
-  const [listText, setListText] = useState([])
-  
   let getInputBox = () => {
     console.log(inputText);
-    setListText(old => [...old, inputText]);
-  }
+    setListText((old) => [...old, inputText]);
+  };
 
-
-  let showTextBox = 
+  let showTextBox = (
     <div>
       <ul>
-        {listText.map(item => (
+        {listText.map((item) => (
           <li key={item}>{item}</li>
         ))}
       </ul>
     </div>
+  );
 
   return (
     <div className={styles.container}>
@@ -68,18 +53,16 @@ export default function Home() {
         <div>{dayOfWeekName}</div>
         <div>{currentDate}</div>
 
-        {inputBox}
-        {addBtn}
+        <div className={styles.inputLayout}>
+          <InputBox
+            className={styles.inputBox}
+            onInputChange={onInputChange}
+            textValue={inputText}
+          />
+          <InputButton label="Add" getInput={getInputBox} />
+        </div>
+
         {showTextBox}
-
-
-
-
-
-
-
-
-
 
         {/*
         <p className={styles.description}>
