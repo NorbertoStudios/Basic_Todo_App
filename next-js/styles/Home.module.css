@@ -4,13 +4,21 @@
 
 .main {
   min-height: 100vh;
-  /* padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
+  padding: 4rem 0;
+  /* display: flex;
+  flex-direction: column; */
+  /* flex: 1;
+  justify-content: center; */
+  /* align-items: center;  */
 }
+
+.inputLayout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 500px;
+}
+
 
 .footer {
   display: flex;
@@ -116,13 +124,16 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
