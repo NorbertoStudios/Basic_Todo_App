@@ -22,3 +22,7 @@
     -webkit-user-select: none;
     width: auto;
 }
+
+ .btn:active {
+     transform: scale(0.98);
+ }
