@@ -1,0 +1,65 @@
+.list {
+    list-style: none;
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px;
+}
+
+.listContainer {
+    display: flex;
+    padding-bottom: 10px;
+
+}
+
+.listCheckbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 0.15em;
+    margin-right: 0.5em;
+    border: 0.15em solid white;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.listCheckbox:checked {
+    width: 1.3em;
+    position: relative;
+    background-color: black;
+}
+
+.listCheckbox:checked::before {
+    content: '_';
+    width: 1.2em;
+    height: 1.2em;
+    top: 2px;
+    right: 2px;
+    position: absolute;
+    background-color: white;
+}
+
+.listItem {
+    width: 100vw;
+    max-width: 400px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid;
+    caret-color: transparent;
+}
+
+
+.listContainer .listItem:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.322);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.322);
+    border-radius: 5px;
+}

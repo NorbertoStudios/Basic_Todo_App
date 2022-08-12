@@ -1,59 +1,39 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import InputBox from "../componets/inputBox/InputBox";
+import InputButton from "../componets/inputButton/InputButton";
+import ShowList from "../componets/showList/ShowList";
+import ShowDate from "../componets/date/ShowDate";
 
 export default function Home() {
-  const date = new Date();
-  const dayOfWeekName = date.toLocaleString("default", { 
-    weekday: "long" 
-  });
-  const currentDate = date.toLocaleString("default", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+  const [inputText, setInputText] = useState("");
+  const [listText, setListText] = useState([]);
 
-  const [inputText, setInputText] = useState();
+  // Get input changes for text input
+  let onInputChange = (event) => {
+    event.preventDefault();
+    setInputText(event.target.value);
+  };
 
-  let onInputChange = (e) => {
-    // console.log(e.target.value);
-    // e.preventDefault(); 
-    setInputText(e.target.value);
-  }
-  const inputBox = <div> 
-    <input
-      type="text"
-      name="inputBox"
-      value={inputText}
-      onChange={(e) => {onInputChange(e)}}
-    />
-  </div>
-
-
-  const addBtn = <div>
-    <button className={styles.addBtn}
-      onClick={() => {getInputBox()}}
-      >
-      Add
-    </button>
-  </div>
-
-  const [listText, setListText] = useState([])
-  
+  // save the input changes to an array
   let getInputBox = () => {
-    console.log(inputText);
-    setListText(old => [...old, inputText]);
-  }
+    setListText((old) => [inputText, ...old]);
+    setInputText("");
+  };
 
+  const handleDelete = (e) => {
+    // the id is the index of the array elements
+    let index = e.currentTarget.id;
+    // console.log(listText[index]);
 
-  let showTextBox = 
-    <div>
-      <ul>
-        {listText.map(item => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </div>
+    // make a separate copy of the array
+    let array = [...listText];
+    // delete item
+    array.splice(index, 1);
+    // save the new array in the old array
+    setListText(array);
+  };
 
   return (
     <div className={styles.container}>
@@ -66,57 +46,18 @@ export default function Home() {
       <main className={styles.main}>
         <h1 className={styles.title}>Basic To-do</h1>
 
-        <div>{dayOfWeekName}</div>
-        <div>{currentDate}</div>
+        <ShowDate />
 
-        {inputBox}
-        {addBtn}
-        {showTextBox}
+        <div className={styles.inputLayout}>
+          <InputBox
+            className={styles.inputBox}
+            onInputChange={onInputChange}
+            textValue={inputText}
+          />
+          <InputButton label="Add" getInput={getInputBox} />
+        </div>
 
-
-
-
-
-
-
-
-
-
-        {/*
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div> */}
+        <ShowList listObject={listText} handleDelete={handleDelete} />
       </main>
 
       <footer className={styles.footer}>
