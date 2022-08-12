@@ -19,6 +19,20 @@ export default function Home() {
   // save the input changes to an array
   let getInputBox = () => {
     setListText((old) => [inputText, ...old]);
+    setInputText("");
+  };
+
+  const handleDelete = (e) => {
+    // the id is the index of the array elements
+    let index = e.currentTarget.id;
+    // console.log(listText[index]);
+
+    // make a separate copy of the array
+    let array = [...listText];
+    // delete item
+    array.splice(index, 1);
+    // save the new array in the old array
+    setListText(array);
   };
 
   return (
@@ -43,8 +57,7 @@ export default function Home() {
           <InputButton label="Add" getInput={getInputBox} />
         </div>
 
-        <ShowList listObject={listText} />
-      
+        <ShowList listObject={listText} handleDelete={handleDelete} />
       </main>
 
       <footer className={styles.footer}>

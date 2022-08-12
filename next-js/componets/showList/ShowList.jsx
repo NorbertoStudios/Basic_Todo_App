@@ -3,7 +3,7 @@ import styles from '../../styles/list/ShowList.module.css'
 import InputDeleteBtn from '../inputButton/InputDeleteBtn';
 import InputCheckBox from '../InputCheckbox/InputCheckBox'
 
-const ShowList = ({ listObject }) => {
+const ShowList = ({ listObject, handleDelete }) => {
 
     const [state, setState] = React.useState({ selections: [] });
 
@@ -22,6 +22,8 @@ const ShowList = ({ listObject }) => {
             selections: sel,
         })
     }
+
+   
 
     const getId = (item, i) => (
         item + '_' + i
@@ -49,6 +51,8 @@ const ShowList = ({ listObject }) => {
                     </li>
                     <InputDeleteBtn
                         label="Del"
+                        del={handleDelete}
+                        id={i}
                     />
 
                 </div>
