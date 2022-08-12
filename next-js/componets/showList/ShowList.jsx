@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '../../styles/list/ShowList.module.css'
+import InputDeleteBtn from '../inputButton/InputDeleteBtn';
 import InputCheckBox from '../InputCheckbox/InputCheckBox'
 
 const ShowList = ({ listObject }) => {
@@ -31,7 +32,7 @@ const ShowList = ({ listObject }) => {
 
             {listObject.map((item, i) => (
                 <div className={styles.listContainer}
-                    key={getId(item,i)}
+                    key={getId(item, i)}
                 >
                     <InputCheckBox
                         handle={handleChange}
@@ -43,7 +44,13 @@ const ShowList = ({ listObject }) => {
                         id={getId(item, i)}
                     >
                         {item}
+
+
                     </li>
+                    <InputDeleteBtn
+                        label="Del"
+                    />
+
                 </div>
             ))}
         </ul>

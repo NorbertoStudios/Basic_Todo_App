@@ -1,9 +1,18 @@
 .list {
     list-style: none;
-    padding: 0;
-}
-.listContainer{
+    margin-top: 30px;
+
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 12px;
+}
+
+.listContainer {
+    display: flex;
+    padding-bottom: 10px;
+
 }
 
 .listCheckbox {
@@ -23,8 +32,9 @@
 .listCheckbox:checked {
     width: 1.3em;
     position: relative;
-    background-color:black;
+    background-color: black;
 }
+
 .listCheckbox:checked::before {
     content: '_';
     width: 1.2em;
@@ -32,11 +42,13 @@
     top: 2px;
     right: 2px;
     position: absolute;
-    background-color:white;
+    background-color: white;
 }
 
 .listItem {
-    width: 400px;
+    width: 100vw;
+    max-width: 400px;
+    padding-left: 10px;
     margin-bottom: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid;
@@ -49,4 +61,5 @@
     cursor: pointer;
     color: rgba(255, 255, 255, 0.322);
     border-bottom: 1px solid rgba(255, 255, 255, 0.322);
+    border-radius: 5px;
 }

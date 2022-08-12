@@ -1,0 +1,22 @@
+.dateContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    caret-color: transparent;
+}
+
+.weekName{
+font-size: 3rem;
+    font-weight: 100;
+    text-transform: uppercase;
+    padding: 4px;
+}
+
+.currentDate{
+font-size: 1.4rem;
+font-weight: 100;
+text-transform: uppercase;
+padding: 4px;
+}
