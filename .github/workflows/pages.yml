@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Detect package manager
         id: detect-package-manager
-        shell: bash
+        shell: Ubuntu-20-04
         run: |
           cd next-js
           if [ -f "${{ github.workspace }}/package.json" ]; then
