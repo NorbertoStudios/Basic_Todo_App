@@ -33,9 +33,12 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
-          cd next-js
-          echo "${{ github.workspace }}"
-          if [ -f "package.json" ]; then
+          if [ -f "${{ github.workspace }}/next-js/yarn.lock" ]; then
+            echo "::set-output name=manager::yarn"
+            echo "::set-output name=command::install"
+            echo "::set-output name=runner::yarn"
+            exit 0
+          elif [ -f "${{ github.workspace }}/next-js/package.json" ]; then
             echo "::set-output name=manager::npm"
             echo "::set-output name=command::ci"
             echo "::set-output name=runner::npx --no-install"
@@ -49,7 +52,6 @@ jobs:
         with:
           node-version: "16"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
-      
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v1
@@ -59,7 +61,6 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-      
       - name: Restore cache
         uses: actions/cache@v3
         with:
@@ -70,16 +71,12 @@ jobs:
           # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
-      
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-      
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
-     
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
