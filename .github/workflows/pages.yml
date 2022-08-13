@@ -26,10 +26,8 @@ concurrency:
 jobs:
   # Build job
   build:
-    runs-on: [self-hosted, linux ]
+    runs-on: [self-hosted, linux]
     steps:
-      - name: Deploy
-        run: |
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
@@ -52,8 +50,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version-file: './next-js/.nvmrc'
-          cache: ${{ steps.detect-package-manager.outputs.runner }}
+          node-version-file: "./next-js/.nvmrc"
+          cache: ./next-js/${{ steps.detect-package-manager.outputs.runner }}
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v1
