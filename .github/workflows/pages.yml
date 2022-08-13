@@ -33,7 +33,9 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |
+          ls
           cd next-js
+          ls
           if [ -f "${{ github.workspace }}/package.json" ]; then
             echo "::set-output name=manager::npm"
             echo "::set-output name=command::ci"
