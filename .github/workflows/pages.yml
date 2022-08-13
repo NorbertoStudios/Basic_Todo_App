@@ -51,7 +51,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: "./next-js/.nvmrc"
-          cache: ./next-js/${{ steps.detect-package-manager.outputs.runner }}
+          cache: ${{ steps.detect-package-manager.outputs.runner }}
+          
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v1
