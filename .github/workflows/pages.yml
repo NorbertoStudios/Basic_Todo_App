@@ -55,7 +55,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           cache-dependency-path: "/next-js/yarn.lock"
-          node-version-file: "/.nvmrc"
+          node-version-file: "./next-js/.nvmrc"
           cache: ${{ steps.detect-package-manager.outputs.runner }}
 
       - name: Setup Pages
