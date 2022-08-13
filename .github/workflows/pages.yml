@@ -32,9 +32,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Detect package manager
         id: detect-package-manager
+        shell: python
         run: |
           cd .github/scripts
-          python build-next.py
+          python ./build-next.py
          
       - name: Setup Node
         uses: actions/setup-node@v3
