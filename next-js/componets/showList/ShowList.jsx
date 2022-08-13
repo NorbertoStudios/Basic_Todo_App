@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../../styles/list/ShowList.module.css'
 import InputDeleteBtn from '../inputButton/InputDeleteBtn';
-import InputCheckBox from '../InputCheckbox/InputCheckBox'
+import InputCheckBox from '../inputCheckbox/InputCheckBox'
 
 const ShowList = ({ listObject, handleDelete }) => {
 
