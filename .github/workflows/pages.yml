@@ -52,7 +52,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version-file: '${{ github.workspace }}/next-js/.nvmrc'
+          node-version-file: './next-js/.nvmrc'
           cache: ${{ steps.detect-package-manager.outputs.runner }}
       - name: Setup Pages
         id: pages
