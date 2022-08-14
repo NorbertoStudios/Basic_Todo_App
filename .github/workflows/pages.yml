@@ -23,83 +23,91 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
-defaults:
-  run:
-    working-directory: next-js
 
 jobs:
   # Build job
   build:
     runs-on: [self-hosted, linux]
+    defaults:
+      run:
+        working-directory: ./next-js
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Detect package manager
-        id: detect-package-manager
+        with:
+          fetch-depth: 2
+
+      - name: Checkout test
         run: |
-          if [ -f "${{ github.workspace }}/next-js/yarn.lock" ]; then
-            echo "::set-output name=manager::yarn"
-            echo "::set-output name=command::install"
-            echo "::set-output name=runner::yarn"
-            exit 0
-          elif [ -f "${{ github.workspace }}/next-js/package.json" ]; then
-            echo "::set-output name=manager::npm"
-            echo "::set-output name=command::ci"
-            echo "::set-output name=runner::npx --no-install"
-            exit 0
-          else
-            echo "Unable to determine packager manager"
-            exit 1
-          fi
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          cache-dependency-path: "./next-js/yarn.lock"
-          node-version-file: "./next-js/.nvmrc"
-          cache: ${{ steps.detect-package-manager.outputs.runner }}
+          ls
+          echo "${{ github.workspace }}"
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v1
-        with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
-          static_site_generator: next
-      - name: Restore cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            .next/cache
-          # Generate a new cache whenever packages or source files change.
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
+  #     - name: Detect package manager
+  #       id: detect-package-manager
+  #       run: |
+  #         if [ -f "${{ github.workspace }}/next-js/yarn.lock" ]; then
+  #           echo "::set-output name=manager::yarn"
+  #           echo "::set-output name=command::install"
+  #           echo "::set-output name=runner::yarn"
+  #           exit 0
+  #         elif [ -f "${{ github.workspace }}/next-js/package.json" ]; then
+  #           echo "::set-output name=manager::npm"
+  #           echo "::set-output name=command::ci"
+  #           echo "::set-output name=runner::npx --no-install"
+  #           exit 0
+  #         else
+  #           echo "Unable to determine packager manager"
+  #           exit 1
+  #         fi
+  #     - name: Setup Node
+  #       uses: actions/setup-node@v3
+  #       with:
+  #         cache-dependency-path: "./next-js/yarn.lock"
+  #         node-version-file: "./next-js/.nvmrc"
+  #         cache: ${{ steps.detect-package-manager.outputs.runner }}
 
-      - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+  #     - name: Setup Pages
+  #       id: pages
+  #       uses: actions/configure-pages@v1
+  #       with:
+  #         # Automatically inject basePath in your Next.js configuration file and disable
+  #         # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
+  #         #
+  #         # You may remove this line if you want to manage the configuration yourself.
+  #         static_site_generator: next
+  #     - name: Restore cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: |
+  #           .next/cache
+  #         # Generate a new cache whenever packages or source files change.
+  #         key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+  #         # If source files changed but packages didn't, rebuild from a prior cache.
+  #         restore-keys: |
+  #           ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
 
-      - name: Build with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next build
+  #     - name: Install dependencies
+  #       run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Static HTML export with Next.js
-        run: ${{ steps.detect-package-manager.outputs.runner }} next export
+  #     - name: Build with Next.js
+  #       run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./next-js/out
+  #     - name: Static HTML export with Next.js
+  #       run: ${{ steps.detect-package-manager.outputs.runner }} next export
 
-  # Deployment job
-  deploy:
-    environment:
-      name: develop
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: [self-hosted, linux]
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+  #     - name: Upload artifact
+  #       uses: actions/upload-pages-artifact@v1
+  #       with:
+  #         path: ./next-js/out
+
+  # # Deployment job
+  # deploy:
+  #   environment:
+  #     name: develop
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: [self-hosted, linux]
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v1
