@@ -37,34 +37,29 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Checkout test
+      - name: Detect package manager
+        id: detect-package-manager
         run: |
-          ls
-          echo "${{ github.workspace }}"
-
-  #     - name: Detect package manager
-  #       id: detect-package-manager
-  #       run: |
-  #         if [ -f "${{ github.workspace }}/next-js/yarn.lock" ]; then
-  #           echo "::set-output name=manager::yarn"
-  #           echo "::set-output name=command::install"
-  #           echo "::set-output name=runner::yarn"
-  #           exit 0
-  #         elif [ -f "${{ github.workspace }}/next-js/package.json" ]; then
-  #           echo "::set-output name=manager::npm"
-  #           echo "::set-output name=command::ci"
-  #           echo "::set-output name=runner::npx --no-install"
-  #           exit 0
-  #         else
-  #           echo "Unable to determine packager manager"
-  #           exit 1
-  #         fi
-  #     - name: Setup Node
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         cache-dependency-path: "./next-js/yarn.lock"
-  #         node-version-file: "./next-js/.nvmrc"
-  #         cache: ${{ steps.detect-package-manager.outputs.runner }}
+          if [ -f "./yarn.lock" ]; then
+            echo "::set-output name=manager::yarn"
+            echo "::set-output name=command::install"
+            echo "::set-output name=runner::yarn"
+            exit 0
+          elif [ -f "./package.json" ]; then
+            echo "::set-output name=manager::npm"
+            echo "::set-output name=command::ci"
+            echo "::set-output name=runner::npx --no-install"
+            exit 0
+          else
+            echo "Unable to determine packager manager"
+            exit 1
+          fi
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          cache-dependency-path: "./yarn.lock"
+          node-version-file: "./.nvmrc"
+          cache: ${{ steps.detect-package-manager.outputs.runner }}
 
   #     - name: Setup Pages
   #       id: pages
