@@ -95,7 +95,7 @@ jobs:
   # Deployment job
   deploy:
     environment:
-      name: github-pages
+      name: develop
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: [self-hosted, linux]
     needs: build
