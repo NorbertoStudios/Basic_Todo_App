@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import InputBox from "../componets/inputBox/InputBox";
@@ -12,21 +12,31 @@ export default function Home() {
 
   // Get input changes for text input
   let onInputChange = (event) => {
+    console.log("onInputChange");
     event.preventDefault();
-    setInputText(event.target.value);
+    let input = event.target.value;
+    setInputText(input);
   };
 
   // save the input changes to an array
   let getInputBox = () => {
-    setListText((old) => [inputText, ...old]);
-    setInputText("");
+    console.log("adding inputText from button");
+    if (inputText !== "") {
+      setListText((old) => [inputText, ...old]);
+      setInputText("");
+    } else {
+      // add a toast to let them know that the input is empty
+      console.log("Input is empty");
+    }
   };
 
   const handleDelete = (e) => {
+    console.log(e + " deleted");
+    e.persist();
     // the id is the index of the array elements
     let index = e.currentTarget.id;
     // console.log(listText[index]);
-
+    console.log(index);
     // make a separate copy of the array
     let array = [...listText];
     // delete item

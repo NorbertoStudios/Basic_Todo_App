@@ -9,6 +9,7 @@ const ShowList = ({ listObject, handleDelete }) => {
 
     // This will select from the map and find a matching key to check against
     const handleChange = (e) => {
+        console.log("showList is called")
         let key = e.currentTarget.id;
         let sel = state.selections
         let find = sel.indexOf(key)
@@ -23,7 +24,6 @@ const ShowList = ({ listObject, handleDelete }) => {
         })
     }
 
-   
 
     const getId = (item, i) => (
         item + '_' + i
@@ -33,12 +33,14 @@ const ShowList = ({ listObject, handleDelete }) => {
         <ul className={styles.list}>
 
             {listObject.map((item, i) => (
+
                 <div className={styles.listContainer}
                     key={getId(item, i)}
                 >
                     <InputCheckBox
                         handle={handleChange}
                         selected={state.selections.includes(getId(item, i))}
+                        id={getId(item, i)}
                     />
                     <li
                         className={styles.listItem}
@@ -46,9 +48,8 @@ const ShowList = ({ listObject, handleDelete }) => {
                         id={getId(item, i)}
                     >
                         {item}
-
-
                     </li>
+
                     <InputDeleteBtn
                         label="Del"
                         del={handleDelete}
