@@ -14,11 +14,8 @@ const App = () => {
 
     const onAddTodo = (newTodo) => {
         setTodoList([newTodo, ...todoList,])
-        console.log(todoList)
-
     }
     const onRemoveTodo = (id) => {
-        console.log(id)
         setTodoList(old => old.filter(todo => todo.id !== id))
     }
     const onChangeCompleted = (todoId) => {

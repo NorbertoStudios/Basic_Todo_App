@@ -7,7 +7,6 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
   const [hover, setHover] = useState(false)
 
   const toggleHover = () => {
-    console.log(hover)
     setHover(!hover)
   }
 
