@@ -11,6 +11,7 @@ const nextConfig = {
       "https://norbertostudios.github.io/Basic_Todo_App",
     ],
     loader: "imgix",
+    path: "https://norbertostudios.github.io/Basic_Todo_App"
   },
   experimental: {
     images: {
