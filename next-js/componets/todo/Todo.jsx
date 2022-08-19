@@ -39,7 +39,6 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
       className={styles.listContainer}
       onMouseEnter={toggleHover}
       onMouseLeave={toggleHover}
-    // className={`${styles.task} ${completed ? styles.completed : ''}`}
     >
       <InputCheckBox
         handle={e => onChangeCompleted(id)}

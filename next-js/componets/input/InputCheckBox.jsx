@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/list/ShowList.module.css'
+import styles from '../../styles/input/InputCheckBox.module.css'
 
 const InputCheckBox = ({ selected, handle, id }) => {
     return (

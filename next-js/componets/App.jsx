@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo} from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import ShowDate from "./date/ShowDate";
@@ -76,7 +76,7 @@ const App = () => {
                     onRemoveTodo={onRemoveTodo}
                     onChangeCompletedTodo={onChangeCompleted}
                 />
-                
+
             </main>
 
             <footer className={styles.footer}>

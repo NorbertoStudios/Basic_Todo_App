@@ -1,0 +1,31 @@
+.listCheckbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 1.6em;
+    height: 1.6em;
+    border-radius: 0.15em;
+    margin-right: 0.5em;
+    border: 0.15em solid white;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.listCheckbox:checked {
+    width: 1.3em;
+    position: relative;
+    background-color: black;
+}
+
+.listCheckbox:checked::before {
+    content: '';
+    width: 1.2em;
+    height: 1.2em;
+    top: 2px;
+    right: 2px;
+    border-radius: 50%;
+    position: absolute;
+    background-color: white;
+}
