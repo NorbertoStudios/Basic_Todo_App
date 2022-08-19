@@ -1,0 +1,7 @@
+[
+  { "name": "potato", "description": "", "completed": false, "id": 0 },
+  { "name": "platano", "description": "", "completed": false, "id": 1 },
+  { "name": "pina", "description": "", "completed": false, "id": 2 },
+  { "name": "mango", "description": "", "completed": false, "id": 3 },
+  { "name": "banana", "description": "", "completed": false, "id": 4 }
+]

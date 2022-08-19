@@ -1,0 +1,36 @@
+.listContainer {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: center;
+
+}
+
+.listItem {
+    width: 100vw;
+    max-width: 380px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    caret-color: transparent;
+}
+
+.listItemCheck {
+    text-decoration: line-through;
+    color: #8d8d8d;
+    caret-color: transparent;
+}
+
+.fillDiv {
+    padding-left: 84px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+
+.btn:active {
+    transform: scale(0.80);
+}

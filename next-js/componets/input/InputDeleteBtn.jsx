@@ -4,9 +4,8 @@ import styles from '../../styles/input/InputDeleteBtn.module.css'
 const InputDeleteBtn = ({ label, del, id }) => {
     return (
         <button
-            id={id}
             className={styles.btn}
-            onClick={del}
+            onClick={() => del(id)}
             type="button"
         >
             <div className={styles.btnLabel}>

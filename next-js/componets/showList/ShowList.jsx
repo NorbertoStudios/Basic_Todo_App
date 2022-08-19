@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from '../../styles/list/ShowList.module.css'
-import InputDeleteBtn from '../inputButton/InputDeleteBtn';
-import InputCheckBox from '../inputCheckbox/InputCheckBox'
+import InputDeleteBtn from '../input/InputDeleteBtn';
+import InputCheckBox from '../input/InputCheckBox'
 
-const ShowList = ({ listObject, handleDelete }) => {
+const ShowList = ({ listObject }) => {
 
     const [state, setState] = React.useState({ selections: [] });
 
@@ -13,6 +13,7 @@ const ShowList = ({ listObject, handleDelete }) => {
         let key = e.currentTarget.id;
         let sel = state.selections
         let find = sel.indexOf(key)
+        console.log(sel, find)
         if (find > -1) {
             sel.splice(find, 1)
         } else {
@@ -24,39 +25,55 @@ const ShowList = ({ listObject, handleDelete }) => {
         })
     }
 
+    const handleDelete = (id) => {
+        console.log(listObject);
+        console.log(id);
+        const newList = list.filter((item) => item.id !== id);
 
-    const getId = (item, i) => (
-        item + '_' + i
-    )
+        setList(newList);
+        // console.log(e + " deleted");
+        // e.persist();
+        // // the id is the index of the array elements
+        // let index = e.target;
+        // // console.log(listText[index]);
+        // console.log(index);
+        // // make a separate copy of the array
+        // let array = [...listText];
+        // // delete item
+        // array.splice(index, 1);
+        // // save the new array in the old array
+        // setListText(array);
+    };
+
 
     return (
         <ul className={styles.list}>
 
             {listObject.map((item, i) => (
 
-                <div className={styles.listContainer}
-                    key={getId(item, i)}
+                <li className={styles.listContainer}
+                    key={item.id}
                 >
                     <InputCheckBox
                         handle={handleChange}
-                        selected={state.selections.includes(getId(item, i))}
-                        id={getId(item, i)}
+                        selected={state.selections.includes(item.id)}
+                        // id={item.id}
                     />
-                    <li
+                   <div
                         className={styles.listItem}
                         onClick={handleChange}
-                        id={getId(item, i)}
+                        // id={item.id}
                     >
-                        {item}
-                    </li>
+                        {item.name}
+                    </div>
 
                     <InputDeleteBtn
                         label="Del"
-                        del={handleDelete}
-                        id={i}
+                        del={() => handleDelete(item.id)}
+                        // id={i}
                     />
 
-                </div>
+                </li>
             ))}
         </ul>
     )

@@ -3,7 +3,8 @@ import styles from '../../styles/input/InputButton.module.css'
 
 const InputButton = ({ label, getInput }) => {
     return (
-        <button className={styles.btn}
+        <button 
+            className={styles.btn}
             onClick={getInput}
             type="button"
         >
