@@ -16,7 +16,7 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
       onClick={() => onRemove(id)}
       className={styles.btn} >
       <Image
-        src="/Basic_Todo_App/assets/icons/remove.png"
+        src="/assets/icons/remove.png"
         alt="Remove icon"
         width={30}
         height={30} />
@@ -25,7 +25,7 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
       onClick={() => onMove(id)}
       className={styles.btn}>
       <Image
-        src="/Basic_Todo_App/assets/icons/threedots.png"
+        src="/assets/icons/threedots.png"
         alt="Three Dots move icon"
         width={30}
         height={30} />
