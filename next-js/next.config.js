@@ -11,7 +11,11 @@ const nextConfig = {
       "https://norbertostudios.github.io/Basic_Todo_App",
     ],
     loader: "imgix",
-    unoptimized: true,
+  },
+  experimental: {
+    images: {
+      unoptimized: true,
+    },
   },
 };
 
