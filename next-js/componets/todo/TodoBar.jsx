@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styles from '../../styles/todo/AddTodoBar.module.css'
+import styles from '../../styles/todo/TodoBar.module.css'
 import { v4 as uuid } from 'uuid';
 
 const AddTodoBar = ({ onSubmit }) => {

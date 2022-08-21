@@ -11,9 +11,6 @@ const clientCredentials = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-
-console.log(!getApps().length);
-
 if (!getApps().length) {
   initializeApp(clientCredentials);
   console.log("Firebase has been init successfully");

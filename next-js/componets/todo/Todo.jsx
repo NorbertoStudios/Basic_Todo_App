@@ -33,7 +33,6 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
     </> : <div className={styles.fillDiv}></div>
   )
 
-
   return (
     <div
       className={styles.listContainer}
