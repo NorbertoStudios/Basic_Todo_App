@@ -10,7 +10,7 @@ const Todos = ({ todosList, onRemoveTodo, onChangeCompletedTodo, onMoveTodo }) =
     >
       {todosList.map(todo => (
         <Todo
-          {...todo.data()}
+          {...todo}
           key={todo.id}
           id={todo.id}
           onMove={onMoveTodo}
