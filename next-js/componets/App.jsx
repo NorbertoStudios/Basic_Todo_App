@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import ShowDate from "./date/ShowDate";
 import AddTodoBar from './todo/TodoBar';
 import Todos from "./todo/Todos";
+import Loging_Auth from './auth/Loging_Auth';
 
 
 // import { auth, db } from "../firebase/firebaseClient";
@@ -22,7 +23,6 @@ const App = ({ todo }) => {
     // const [user_todoList, user_todoListLoading, user_todoListError] = useCollection(
     //     collection(db, path)
     // );
-
 
     const [todoList, setTodoList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -106,9 +106,7 @@ const App = ({ todo }) => {
                 <ShowDate />
 
                 <AddTodoBar onSubmit={onAddTodo} />
-
-                {console.log(todo.todo_list)}
-                {/* {console.log(tod)} */}
+                
                 <Todos
                     todosList={todo.todo_list}
                     onMoveTodo={onMoveTodo}
@@ -116,7 +114,7 @@ const App = ({ todo }) => {
                     onChangeCompletedTodo={onChangeCompleted}
                 />
 
-
+<Loging_Auth/>
 
             </main>
 
@@ -128,18 +126,3 @@ const App = ({ todo }) => {
 }
 
 export default App
-
-// export async function getServerSideProps() {
-//     const { db } = await connectToDatabase();
-
-//     let user = await db
-//         .collection("todos")
-//         .find()
-//         .toArray();
-
-//     return {
-//         props: {
-//             todo: JSON.parse(JSON.stringify(user)),
-//         },
-//     };
-// }

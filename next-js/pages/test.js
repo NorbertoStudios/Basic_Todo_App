@@ -56,18 +56,19 @@ const test = () => {
       <button onClick={lg}>LogOut</button>
 
       <p>
+        {auth.currentUser && auth.currentUser.displayName}
         {userDocError && <strong>Error: {JSON.stringify(error)}</strong>}
         {userDocLoading && <span>Document: Loading...</span>}
-        {users &&  (
+        {users && (
           <span>
-            Collection:{' '}
+            Collection:{" "}
             {users.docs.map((doc) => (
               <React.Fragment key={doc.id}>
-                {JSON.stringify(doc.data())},{' '}
+                {JSON.stringify(doc.data())},{" "}
               </React.Fragment>
             ))}
           </span>
-          )}
+        )}
       </p>
     </>
   );

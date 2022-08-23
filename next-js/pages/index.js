@@ -1,45 +1,37 @@
 import App from "../componets/App";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { auth } from "../firebase/firebaseClient";
-
-
+import { getSession } from "next-auth/react";
 import clientPromise from "../util/mongodb";
 
 export async function getServerSideProps(context) {
   try {
-    // let { db } = await connectToDatabase();
-    // await clientPromise
+    const session = await getSession(context);
+    // fetch
     const client = await clientPromise;
     const db = client.db("basic-todo-app");
+    const key = session.user.email;
+    // fetch the posts
+    let todos = await db.collection("todos").findOne({ key: key });
 
-   // fetch the posts
-   let user = await db
-     .collection("todos")
-     .findOne({ key: "test_norbertostudios@gmail.com" })
-   
-  //  console.log(user[0]['todo_list']);
+    let todolist = (todos && JSON.parse(JSON.stringify(todos))) || {
+      todo_list: [],
+    };
     return {
-      props: {  todo: JSON.parse(JSON.stringify(user)) },
+      props: { todo: todolist },
     };
   } catch (e) {
     console.error(e);
     return {
-      props: { isConnected: false },
+      props: {
+        todo: {
+          todo_list: [],
+        },
+      },
     };
   }
 }
 
-const Home = ({todo}) => {
-  // const [user, loading, error] = useAuthState(auth);
-  // console.log(user);
-  return (
-  //   {user === null ? {
-  //     console.log("Authenticated", user);
-  //     auth.signOut();
-  //   }
-  // : ""}
-    <App todo={todo}/>
-  )
-}
+const Home = ({ todo }) => {
+  return <App todo={todo} />;
+};
 
-export default Home; 
+export default Home;

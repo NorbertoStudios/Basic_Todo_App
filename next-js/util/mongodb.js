@@ -64,7 +64,7 @@ if (process.env.NODE_ENV === "development") {
   }
   clientPromise = global._mongoClientPromise;
 } else {
-    console.log("DEV Start connection to mongodb");
+    console.log("PROD Start connection to mongodb");
   // In production mode, it's best to not use a global variable.
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
