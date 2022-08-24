@@ -14,6 +14,8 @@ const AddTodoBar = ({ onSubmit }) => {
         name: todokName,
         description: "",
         completed: false,
+        createdAt: new Date(),
+        updatedAt: new Date(),
       }
 
       onSubmit(newTodo)

@@ -1,5 +1,5 @@
 
-import clientPromise from "../../../util/mongodb";
+import clientPromise from "../../../../util/mongodb";
 
 const index = async (req, res) => {
       try {

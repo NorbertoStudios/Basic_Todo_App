@@ -6,17 +6,9 @@ import AddTodoBar from './todo/TodoBar';
 import Todos from "./todo/Todos";
 import Loging_Auth from './auth/Loging_Auth';
 
+import Router from 'next/router'
 
-// import { auth, db } from "../firebase/firebaseClient";
-// import {useCollection,} from "react-firebase-hooks/firestore";
-// import { collection, doc, setDoc, deleteDoc, updateDoc, getDoc } from "firebase/firestore";
-
-
-// import { connectToDatabase } from "../util/mongodb";
-
-// const LOCALSTORAGE_TODOS_KEY = 'todolist'
-
-const App = ({ todo }) => {
+const App = ({ todos }) => {
 
     // const path = "users/test_norbertostudios@gmail.com/todos";
 
@@ -28,7 +20,13 @@ const App = ({ todo }) => {
     const [isLoading, setIsLoading] = useState(true)
 
     const onAddTodo = (newTodo) => {
-        setTodoList([newTodo, ...todoList,])
+        const a = Buffer(JSON.stringify(newTodo)).toString('base64')
+        fetch("/api/v1/todos/user/todo-list/add-todo?todo=" + a)
+            .then((res) => res.json())
+
+        // setTodoList([newTodo, ...todoList,])
+
+        Router.reload(window.location.pathname)
 
         //Firebase
         // const docRef = doc(db, path, newTodo.id);
@@ -62,22 +60,10 @@ const App = ({ todo }) => {
         console.log(id)
     }
 
-    // useEffect(() => {
-    //     // if (!user_todoListLoading){
-    //     //     console.log('Todo List Finish Loading');
-    //     //     setTodoList(user_todoList.docs)
-    //     //     console.log('Todo List Finish Loading After', todoList);
-    //     // }
-    //     if (!isLoading) {
-    //         localStorage.setItem(LOCALSTORAGE_TODOS_KEY, JSON.stringify(todoList))
-    //     }
-    // }, [todoList, ])
-
-    // useEffect(() => {
-    //     const todosLocal = localStorage.getItem(LOCALSTORAGE_TODOS_KEY)
-    //     todosLocal && setTodoList(JSON.parse(todosLocal))
-    //     setIsLoading(false)
-    // }, [])
+    useEffect(() => {
+        todos && setTodoList(todos.todo_list)
+        setIsLoading(false)
+    }, [todoList])
 
     // const handleTermSearch = (e) => {
     //     const valueTerm = e.target.value.toLocaleLowerCase()
@@ -108,7 +94,7 @@ const App = ({ todo }) => {
                 <AddTodoBar onSubmit={onAddTodo} />
                 
                 <Todos
-                    todosList={todo.todo_list}
+                    todosList={todoList}
                     onMoveTodo={onMoveTodo}
                     onRemoveTodo={onRemoveTodo}
                     onChangeCompletedTodo={onChangeCompleted}

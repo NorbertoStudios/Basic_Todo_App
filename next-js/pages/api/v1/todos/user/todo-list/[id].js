@@ -1,27 +1,38 @@
-import clientPromise from "../../../../../util/mongodb";
+import clientPromise from "../../../../../../util/mongodb";
 import { ObjectId } from "mongodb";
+
+import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
 
-  // const data
-  // fetch("http://example.com/movies.json")
-  //   .then((response) => response.json())
-  //   .then((data) => console.log(data));
-
   const { query } = req;
   const { id } = query;
-  // let o_id = ObjectId(id)
-  //  const filtered = people.filter((p) => p.id === id);
-const userId = ObjectId('63042b9d9509236979dddd5f');
+
+
+
+  const userId = {
+    "todo_list.id": id,
+    _id: new ObjectId("63042b9d9509236979dddd5f"),
+  };
+  const projection = {
+    todo_list: {
+      $elemMatch: {
+        id: id,
+      },
+    },
+    _id: false,
+  };
   const client = await clientPromise;
   const db = client.db("basic-todo-app");
   // fetch the posts
-  let todo = await db.collection("todos").find({ _id: userId }).toArray();
-  
+  const todolist = await db
+    .collection("todos")
+    .find(userId, { projection })
+    .toArray();
 
   // User with id exists
   return res.json({
-    message: todo, // JSON.parse(JSON.stringify(id)),
+    message: todolist, // JSON.parse(JSON.stringify(id)),
     success: true,
   });
 

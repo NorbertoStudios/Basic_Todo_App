@@ -1,4 +1,4 @@
-import clientPromise from "../../../../util/mongodb";
+import clientPromise from "../../../../../util/mongodb";
 import { ObjectId } from "mongodb";
 
 const handler = async (req, res) => {

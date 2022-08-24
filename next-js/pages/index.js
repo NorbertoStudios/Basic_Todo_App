@@ -5,24 +5,27 @@ import clientPromise from "../util/mongodb";
 export async function getServerSideProps(context) {
   try {
     const session = await getSession(context);
+
     // fetch
     const client = await clientPromise;
     const db = client.db("basic-todo-app");
-    const key = session.user.email;
+    const email = session.user.email;
+
     // fetch the posts
-    let todos = await db.collection("todos").findOne({ key: key });
+    let todos = await db.collection("todos").findOne({ email: email });
+
 
     let todolist = (todos && JSON.parse(JSON.stringify(todos))) || {
       todo_list: [],
     };
     return {
-      props: { todo: todolist },
+      props: { todos: todolist },
     };
   } catch (e) {
     console.error(e);
     return {
       props: {
-        todo: {
+        todos: {
           todo_list: [],
         },
       },
@@ -30,8 +33,8 @@ export async function getServerSideProps(context) {
   }
 }
 
-const Home = ({ todo }) => {
-  return <App todo={todo} />;
+const Home = ({ todos }) => {
+  return <App todos={todos} />;
 };
 
 export default Home;
