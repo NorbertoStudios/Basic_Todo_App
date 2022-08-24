@@ -1,14 +1,10 @@
 import clientPromise from "../../../../../../util/mongodb";
 import { ObjectId } from "mongodb";
 
-import { getSession } from "next-auth/react";
-
 const handler = async (req, res) => {
 
   const { query } = req;
   const { id } = query;
-
-
 
   const userId = {
     "todo_list.id": id,
