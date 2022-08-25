@@ -1,14 +1,117 @@
-[
-  {
-    "key": "test_norbertostudios@gmail.com",
-    "display_name": "Test_norberto",
-    "email": "test_norbertostudios@gmail.com",
-    "todo_list": [
-      { "name": "potato", "description": "", "completed": false, "id": 0 },
-      { "name": "platano", "description": "", "completed": false, "id": 1 },
-      { "name": "pina", "description": "", "completed": false, "id": 2 },
-      { "name": "mango", "description": "", "completed": false, "id": 3 },
-      { "name": "banana", "description": "", "completed": false, "id": 4 }
-    ]
-  }
-]
+{
+  "message": [
+    {
+      "_id": "63042b9d9509236979dddd5f",
+      "todo_list": [
+        {
+          "name": "potato",
+          "description": "",
+          "completed": false,
+          "id": "0"
+        },
+        {
+          "name": "platano",
+          "description": "",
+          "completed": false,
+          "id": "1"
+        },
+        {
+          "name": "pina",
+          "description": "",
+          "completed": false,
+          "id": "2"
+        },
+        {
+          "name": "mango",
+          "description": "",
+          "completed": false,
+          "id": "3"
+        },
+        {
+          "name": "banana",
+          "description": "",
+          "completed": false,
+          "id": "4"
+        },
+        {
+          "id": "fbf21cec-85af-4178-a481-a14142e07489",
+          "name": "buy manzanas",
+          "description": "",
+          "completed": false
+        },
+        {
+          "id": "1fafd25f-5907-432d-b08c-4dab18cb2940",
+          "name": "add me here",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T03:48:56.558Z",
+          "updatedAt": "2022-08-24T03:48:56.558Z"
+        },
+        {
+          "id": "7d7b5f26-5f34-465e-88c2-ad855b12be39",
+          "name": "add me",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T04:29:50.728Z",
+          "updatedAt": "2022-08-24T04:29:50.728Z"
+        },
+        {
+          "id": "2028c785-9971-4a28-9637-60095e320191",
+          "name": "av",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T04:34:36.992Z",
+          "updatedAt": "2022-08-24T04:34:36.992Z"
+        },
+        {
+          "id": "78c86d46-dd0b-49a2-9760-fac88de16d40",
+          "name": "abec",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T04:36:40.770Z",
+          "updatedAt": "2022-08-24T04:36:40.770Z"
+        },
+        {
+          "id": "981364ef-20b2-4b9d-b643-496498fb5f57",
+          "name": "ad",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T05:56:22.482Z",
+          "updatedAt": "2022-08-24T05:56:22.482Z"
+        },
+        {
+          "id": "9b664a5c-56f0-44c6-bb47-669fad3a01b8",
+          "name": "buy coco",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T06:08:37.530Z",
+          "updatedAt": "2022-08-24T06:08:37.530Z"
+        },
+        {
+          "id": "563ee895-c59c-4a8c-883e-1e6b17b70885",
+          "name": "buy manza",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T06:09:56.257Z",
+          "updatedAt": "2022-08-24T06:09:56.257Z"
+        },
+        {
+          "id": "90ac4fe4-cd2c-420f-ab94-53bd3feaaa6a",
+          "name": "play bad bunny",
+          "description": "",
+          "completed": false,
+          "createdAt": "2022-08-24T18:15:53.465Z",
+          "updatedAt": "2022-08-24T18:15:53.465Z"
+        }
+      ],
+      "user": {
+        "email": "norbertostudios@gmail.com",
+        "display_name": "Norberto Studios"
+      },
+      "createdAt": "2000-01-01T05:00:00.000Z",
+      "modifiedAt": "2000-01-01T05:00:00.000Z"
+    }
+  ],
+  "success": true,
+  "status": 200
+}

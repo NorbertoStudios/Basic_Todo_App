@@ -1,5 +1,4 @@
-import clientPromise from "../../../../../../util/mongodb";
-import { ObjectId } from "mongodb";
+import clientPromise from "../../../../util/mongodb";
 
 const handler = async (req, res) => {
 
@@ -8,7 +7,7 @@ const handler = async (req, res) => {
 
   const userId = {
     "todo_list.id": id,
-    _id: new ObjectId("63042b9d9509236979dddd5f"),
+    "user.email": "norbertostudios@gmail.com",
   };
   const projection = {
     todo_list: {
