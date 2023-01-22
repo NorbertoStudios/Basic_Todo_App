@@ -6,22 +6,23 @@ import AddTodoBar from './todo/TodoBar';
 import Todos from "./todo/Todos";
 import Loging_Auth from './auth/Loging_Auth';
 
+
 const App = () => {
 
-
+    const apiUrl = 'http://todo-api.nslan/api/v1/todo'
     const [todoList, setTodoList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     const onAddTodo = (newTodo) => {
         const data = {
-            todo: newTodo,
-            email: "norbertostudios@gmail.com"
-        }
+            ...newTodo,
+            user_id: 1,
+        };
         const encodeData = Buffer(JSON.stringify(data)).toString('base64')
 
-        fetch("/api/v1/todos/add-todo", {
+        fetch(apiUrl, {
             method: "POST", headers: {
-                'Content-Type': 'application/text',
+                'Content-Type': 'application/json',
             },
             body: (encodeData),
         })
@@ -30,19 +31,7 @@ const App = () => {
 
     }
     const onRemoveTodo = (id) => {
-        const data = {
-            id: id,
-            email: "norbertostudios@gmail.com"
-        }
-        
-        const encodeData = Buffer(JSON.stringify(data)).toString('base64')
-
-        fetch("/api/v1/todos/delete-todo", {
-            method: "DELETE", headers: {
-                'Content-Type': 'application/text',
-            },
-            body: (encodeData),
-        })
+        fetch(apiUrl+"/"+id, {method: "DELETE"})
             .then((res) => res.json())
             .then(() => setTodoList(old => old.filter(todo => todo.id !== id)))
 
@@ -53,19 +42,18 @@ const App = () => {
         const updatedTodo = [...todoList]
         updatedTodo[todoIndex].completed = !updatedTodo[todoIndex].completed
 
-        const data = {
-            id: todoId,
-            email: "norbertostudios@gmail.com",
-            completed: updatedTodo[todoIndex].completed
-        }
-        const encodeData = Buffer(JSON.stringify(data)).toString('base64')
+        // const data = {
+        //     id: todoId,
+        //     email: "norbertostudios@gmail.com",
+        //     completed: updatedTodo[todoIndex].completed
+        // }
+        // const encodeData = Buffer(JSON.stringify(data)).toString('base64')
 
 
-        fetch("/api/v1/todos/update-todo", {
+        fetch(apiUrl+"/"+todoId, {
             method: "PATCH", headers: {
-                'Content-Type': 'application/text',
-            },
-            body: (encodeData),
+                'Content-Type': 'application/json',
+            }
         })
             .then((res) => res.json())
             .then(() => setTodoList(updatedTodo))
@@ -78,9 +66,8 @@ const App = () => {
     }
 
     useEffect(() => {
-        fetch("/api/v1/todos/list-todo", { method: "GET" })
-            .then((res) => res.json())
-            .then((list) => setTodoList(list.todo_list))
+        fetch(apiUrl)
+            .then((res) => setTodoList(res.json()));
         setIsLoading(false)
     }, [])
 

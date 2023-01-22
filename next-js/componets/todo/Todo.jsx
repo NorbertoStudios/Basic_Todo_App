@@ -3,7 +3,7 @@ import InputCheckBox from '../input/InputCheckBox'
 import styles from '../../styles/todo/Todo.module.css'
 import Image from 'next/image'
 
-const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, onMove }) => {
+const Todo = ({ id, title, completed, due_date, user_id, onRemove, onChangeCompleted, onMove }) => {
   const [hover, setHover] = useState(false)
 
   const toggleHover = () => {
@@ -46,7 +46,7 @@ const Todo = ({ id, name, description, completed, onRemove, onChangeCompleted, o
       <a
         className={`${styles.listItem} ${completed ? styles.listItemCheck : ''}`}
       >
-        {name}
+        {title}
       </a>
       {showBtn}
 

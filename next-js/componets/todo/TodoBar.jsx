@@ -10,12 +10,11 @@ const AddTodoBar = ({ onSubmit }) => {
 
     if (!!todokName) {
       const newTodo = {
-        id: uuid(),
-        name: todokName,
-        description: "",
+        title: todokName,
         completed: false,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        due_date: new Date(),
+        created: new Date(),
+        modified: new Date(),
       }
 
       onSubmit(newTodo)
