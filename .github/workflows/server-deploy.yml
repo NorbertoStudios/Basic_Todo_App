@@ -1,0 +1,32 @@
+name: Create And Deploy
+
+on:
+  push:
+    branches:
+#      - master
+      - develop
+      - feature/todo-java-integration
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setting up Env
+        shell: bash
+        run: |
+          echo "$HOME" >> $GITHUB_PATH
+          echo "LOWER_NAME=$( echo ${{ github.event.repository.name}} | tr '[:upper:]' '[:lower:]' | tr "_" "-" )" >> ${GITHUB_ENV}
+          echo "LOWER_BRANCH=$(echo ${GITHUB_REF#refs/heads/} | tr '[:upper:]' '[:lower:]' )" >> ${GITHUB_ENV}
+          echo "LOWER_TAG=$(echo ${GITHUB_REF#refs/*/} | tr '[:upper:]' '[:lower:]' )" >> ${GITHUB_ENV}
+
+      - name: Build Docker image
+        run: |
+          cd next-js
+          docker build $LOWER_NAME:$LOWER_TAG .
+
+      - name: Push Docker image to local registry, SSH and Deploy
+        run: $HOME/deploy.sh $LOWER_NAME $LOWER_TAG

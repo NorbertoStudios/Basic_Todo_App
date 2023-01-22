@@ -12,6 +12,8 @@ const nextConfig = {
   // basePath: "/Basic_Todo_App",
   reactStrictMode: true,
   swcMinify: true,
+
+  output: "standalone",
   // images: {
   //   //   domains: [
   //   //     "localhost/Basic_Todo_App",
@@ -52,7 +54,7 @@ const productionConfig = {
   swcMinify: true,
   images: {
     loader: "imgix",
-    path: "https://basic-todo.norbertostudios.com",
+    path: "https://todo.nstudios.dev",
   },
   experimental: {
     images: {
